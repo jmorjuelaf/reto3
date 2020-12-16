@@ -3,7 +3,6 @@
     <h2>
       Hola <span> {{ username }}, </span> ¡Bienvenido!
     </h2>
-    <p> su correo es {{email}}</p>
   </div>
 </template>
 
@@ -33,7 +32,7 @@ export default {
   data: function () {
     return {
       username: "",
-      emai: "",
+      email: "",
       dob: ""
     };
   },
@@ -42,14 +41,14 @@ export default {
     console.log(this.$route);
     let self = this;
     axios
-      .get("http://127.0.0.1:8000/user/info/" + this.username)
+      .get("http://127.0.0.1:8000/user/info/"+this.username)
       .then((result) => {
         self.email = result.data.email;
         self.dob = result.data.dob;
-        console.log(self.dob);
+        console.log(result.data);
       })
       .catch((error) => {
-        alert("ERROR Servidor");
+        alert(error);
       });
   },
 };
