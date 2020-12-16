@@ -3,6 +3,7 @@
     <h2>
       Hola <span> {{ username }}, </span> ¡Bienvenido!
     </h2>
+    <p> su correo es {{email}}</p>
   </div>
 </template>
 
@@ -38,6 +39,7 @@ export default {
   },
   created: function () {
     this.username = this.$route.params.username;
+    console.log(this.$route);
     let self = this;
     axios
       .get("http://127.0.0.1:8000/user/info/" + this.username)
