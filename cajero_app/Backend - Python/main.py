@@ -41,7 +41,7 @@ async def auth_user(username: str,password: str):
     return  {"Autenticado El usuario " + username + " ha ingresado" }
 
 
-@api.get("/user/info/")
+@api.get("/user/info/{username}")
 async def get_info(username: str):
 
     user_in_db = get_user(username)

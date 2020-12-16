@@ -5,19 +5,58 @@
     </h2>
   </div>
 </template>
+
+
+
+
+
 <script>
+// export default {
+//   name: "User",
+//   data: function () {
+//     return {
+//       username: "none",
+//     };
+//   },
+//   created: function () {
+//     this.username = this.$route.params.username;
+//   },
+// };
+</script>
+
+
+<script>
+import axios from "axios";
 export default {
   name: "User",
   data: function () {
     return {
-      username: "none",
+      username: "",
+      emai: "",
+      dob: ""
     };
   },
   created: function () {
     this.username = this.$route.params.username;
+    let self = this;
+    axios
+      .get("http://127.0.0.1:8000/user/info/" + this.username)
+      .then((result) => {
+        self.email = result.data.email;
+        self.dob = result.data.dob;
+        console.log(self.dob);
+      })
+      .catch((error) => {
+        alert("ERROR Servidor");
+      });
   },
 };
 </script>
+
+
+
+
+
 <style>
 #User {
   width: 100%;
