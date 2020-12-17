@@ -6,11 +6,12 @@
       <h1>My TIC Finances</h1>
       <nav>
         <p>{{username}}</p>
-        <button v-if="is_auth">Cerrar Sesión</button>
+        <button v-on:click="init" v-if="is_auth">Cerrar Sesión</button>
       </nav>
     </div>
     <div class="main-component">
-      <router-view></router-view>
+      
+      <router-view></router-view> <!-- Duplicando footer and header -->
     </div>
     <div class="footer">
       <h2>Misión TIC 2022</h2>
@@ -18,8 +19,13 @@
   </div>
 </template>
 
+
+
+
+
 <script>
 import axios from "axios";
+
 export default {
   name: "App",
   components: {},
@@ -31,6 +37,7 @@ export default {
       dob: ""
     };
   },
+  
   methods: {
     init: function () {
       //if (this.$route.name != "user") {
@@ -44,7 +51,8 @@ export default {
     console.log(this.$route);
     let self = this;
     axios
-      .get("http://127.0.0.1:8000/user/info/"+this.username)
+      //.get("http://127.0.0.1:8000/user/info/"+this.username)
+      .get("http://127.0.0.1:8000/user/info/"+"szapatao")
       .then((result) => {
         self.email = result.data.email;
         self.dob = result.data.dob;
@@ -59,6 +67,10 @@ export default {
   //  localStorage.setItem("isAuth", true);
   //  this.$router.push({name:"user",params:{username:'santi2020'}})
   //},
+
+
+
+
   
 }
 </script>

@@ -30,15 +30,17 @@ import axios from "axios";
 export default {
   name: "User",
   data: function () {
+    console.log("Esperando usuario");
     return {
-      username: "",
-      email: "",
-      dob: ""
+      username: "a",
+      email: "b",
+      dob: "c"
     };
   },
   created: function () {
     this.username = this.$route.params.username;
-    console.log(this.$route);
+    console.log(this.$route );
+    console.log("Information");
     let self = this;
     axios
       .get("http://127.0.0.1:8000/user/info/"+this.username)
@@ -46,6 +48,7 @@ export default {
         self.email = result.data.email;
         self.dob = result.data.dob;
         console.log(result.data);
+        console.log("mostrando");
       })
       .catch((error) => {
         alert(error);
